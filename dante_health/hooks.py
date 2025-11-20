@@ -245,9 +245,9 @@ doctype_js = {
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-override_doctype_dashboard = {
-    "Patient": "dante_health.public.patient.patient_dashboard.get_dashboard_data"
-}
+# override_doctype_dashboard = {
+#     "Patient": "dante_health.public.patient.patient_dashboard.get_dashboard_data"
+# }
 
 
 fixtures = [
