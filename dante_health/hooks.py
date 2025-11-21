@@ -45,8 +45,8 @@ app_license = "mit"
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 doctype_js = {
-	"Patient": "public/js/patient.js",
-	"Patient Appointment": "public/js/patient_appointment.js",
+	"Patient": "public/js/patient/patient.js",
+	"Patient Appointment": "public/js/patient_appointment/patient_appointment.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -136,6 +136,14 @@ doctype_js = {
 # override_doctype_class = {
 # 	"ToDo": "custom_app.overrides.CustomToDo"
 # }
+override_doctype_class = {
+    "Patient Appointment": "dante_health.public.patient_appointment.patient_appointment.PatientAppointment"
+}
+override_doctype_class = {
+    "Patient": "dante_health.public.patient.patient.CustomPatient"
+}
+
+
 
 # Document Events
 # ---------------
@@ -245,9 +253,10 @@ doctype_js = {
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-# override_doctype_dashboard = {
-#     "Patient": "dante_health.public.patient.patient_dashboard.get_dashboard_data"
+# override_doctype_dashboards = {
+#     "Patient": "dante_health.public.patient.patient_dashboard.get_data"
 # }
+
 
 
 fixtures = [
