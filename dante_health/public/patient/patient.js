@@ -19,11 +19,21 @@ function open_relation_dialog(frm) {
                 }
             },
             {
+                fieldname: "is_new_patient",
+                label: "Is New Patient",
+                fieldtype: "Check",
+                default: 0,
+                onchange() {
+                    d.refresh();
+                }
+            },
+            {
                 fieldname: "existing_patient",
                 label: "Select Existing Patient",
                 fieldtype: "Link",
                 options: "Patient",
                 depends_on: "eval:doc.is_existing == 1",
+                reqd: 1,
                 get_query() {
                     return {
                         query: "dante_health.public.patient.patient.search_patient"
@@ -34,21 +44,24 @@ function open_relation_dialog(frm) {
                 fieldname: "partner_name",
                 label: "Partner Name",
                 fieldtype: "Data",
-                depends_on: "eval:doc.is_existing != 1",
+                depends_on: "eval:doc.is_existing != 1 && doc.is_new_patient == 1",
+                reqd: 1,
             },
             {
                 fieldname: "partner_gender",
                 label: "Partner Gender",
                 fieldtype: "Link",
                 options: "Gender",
-                depends_on: "eval:doc.is_existing != 1",
+                depends_on: "eval:doc.is_existing != 1 && doc.is_new_patient == 1",
+                reqd: 1,
             },
             {
                 fieldname: "relation",
                 label: "Relation",
                 fieldtype: "Select",
                 options: "Father\nMother\nSpouse\nSiblings\nFamily\nOther",
-                reqd: 1
+                reqd: 1,
+                depends_on: "eval:doc.is_existing == 1 || doc.is_new_patient == 1"
             }
         ],
 

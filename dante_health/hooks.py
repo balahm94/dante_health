@@ -47,6 +47,7 @@ app_license = "mit"
 doctype_js = {
 	"Patient": "public/patient/patient.js",
 	"Patient Appointment": "public/patient_appointment/patient_appointment.js",
+    "Asset": "public/asset/asset.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -156,7 +157,13 @@ override_doctype_class = {
 # 		"on_trash": "method"
 # 	}
 # }
-
+# doc_events = {
+#     "Patient Appointment": {
+#         "validate": "dante_health.public.patient_appointment.patient_appointment.validate_multi_slot_overlap",
+#         "after_insert": "dante_health.public.patient_appointment.patient_appointment.fix_event_end_time",
+#         "on_update": "dante_health.public.patient_appointment.patient_appointment.fix_event_end_time"
+#     }
+# }
 # Scheduled Tasks
 # ---------------
 
@@ -180,6 +187,14 @@ override_doctype_class = {
 
 # Testing
 # -------
+doc_events = {
+    "Asset": {
+        "validate": "dante_health.public.asset.asset.validate_warranty_logic"
+    }
+}
+
+
+
 
 # before_tests = "dante_health.install.before_tests"
 
@@ -189,6 +204,7 @@ override_doctype_class = {
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "dante_health.event.get_events"
 # }
+
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
