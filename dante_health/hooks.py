@@ -48,7 +48,11 @@ doctype_js = {
 	"Patient": "public/patient/patient.js",
 	"Patient Appointment": "public/patient_appointment/patient_appointment.js",
     "Asset": "public/asset/asset.js",
-    "Practitioner Schedule": "public/practitioner_schedule/practitioner_schedule.js"
+    "Practitioner Schedule": "public/practitioner_schedule/practitioner_schedule.js",
+    "Purchase Order": "public/purchase_order/purchase_order.js",
+    "Material Request": "public/material_request/material_request.js",
+    "Purchase Receipt": "public/purchase_receipt/purchase_receipt.js",
+    "Stock Entry": "public/stock_entry/stock_entry.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -190,8 +194,20 @@ override_doctype_class = {
 # -------
 doc_events = {
     "Asset": {
-        "validate": "dante_health.public.asset.asset.validate_warranty_logic"
-    }
+        "validate": "dante_health.public.asset.asset.validate_warranty_logic",
+    },
+    "Sales Invoice": {
+        "validate": "dante_health.api.sales_invoice.validate_coupon_on_invoice",
+        "on_submit": "dante_health.api.sales_invoice.on_submit_update_coupon",
+        "on_cancel": "dante_health.api.sales_invoice.on_cancel_update_coupon",
+    },
+    "Material Request": {
+        "validate": "dante_health.common_api.audit_material_request_changes"
+    },
+    "Purchase Receipt": {
+        "before_validate": "dante_health.public.purchase_receipt.purchase_receipt.before_validate",
+        "before_submit": "dante_health.public.purchase_receipt.purchase_receipt.before_submit",
+    },
 }
 
 
